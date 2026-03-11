@@ -64,8 +64,6 @@ Example:
 The plant will automatically appear in the search results.
 
 ---
-
-## 📂 Project Structure
 ## 🎯 Future Improvements
 
 - Add more medicinal plants
@@ -93,8 +91,7 @@ This project can help:
 
 AI Product Developer | Full Stack Developer
 
-Portfolio: *(Add your portfolio link)*  
-GitHub: *(Add GitHub profile link)*
+Portfolio: *https://abhishekjeyakumar.github.io/My-Portfolio/*  
 
 ---
 
