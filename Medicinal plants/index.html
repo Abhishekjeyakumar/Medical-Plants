@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Herbal Garden</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #FFC107;
+        }
+
+        .search-bar {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: #FF5722;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #E64A19;
+        }
+
+        .hero {
+            background: url('https://via.placeholder.com/1500x600?text=Virtual+Herbal+Garden') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 42px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .cta {
+            background-color: #FF5722;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta:hover {
+            background-color: #E64A19;
+            transform: scale(1.05);
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .featured-plants,
+        .educational-resources,
+        .testimonials {
+            text-align: center;
+        }
+
+        .featured-plants h2,
+        .educational-resources h2,
+        .testimonials h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .plant-item {
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top;
+            max-width: 300px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .plant-item img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .plant-item:hover {
+            transform: scale(1.02);
+        }
+
+        .plant-profile {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #4CAF50;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 90%;
+            height: 90%;
+            overflow: hidden;
+            max-width: 1200px;
+            max-height: 800px;
+            transition: opacity 0.3s ease;
+        }
+
+        .plant-profile h2 {
+            margin-top: 0;
+        }
+
+        .plant-profile button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .plant-profile button:hover {
+            background-color: #E64A19;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer .social-media {
+            margin: 20px 0;
+        }
+
+        footer .social-media a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        footer .social-media a:hover {
+            color: #FFC107;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cta {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .plant-profile {
+                width: 95%;
+                height: 95%;
+            }
+        }
+
+        .panolens-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .panolens-container canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .t {
+            color: yellow;
+        }
+
+        .heading {
+            color: black;
+        }
+
+        .plant {
+            background-color: green;
+            color: white;
+        }
+    </style>
+    <!-- Include Panolens.js -->
+    <script src="https://cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Virtual Herbal Garden</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for plants..." oninput="filterPlants()">
+            <button onclick="startVoiceSearch()">🎤 Voice Search</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1 class="heading">Welcome to the Virtual Herbal Garden</h1>
+            <p class="heading">Explore medicinal plants from AYUSH systems.</p>
+            <a href="#explore" class="cta">Start Exploring</a>
+            <a href="#about" class="cta">Learn More</a>
+        </section>
+
+        <section id="explore" class="featured-plants section">
+            <h2 class="plant">Featured Plants</h2>
+            <div class="plant-list">
+
+                <div class="plant-item" data-name="Aloe Vera">
+                    <img src= <div class="sketchfab-embed-wrapper"> 
+                        <iframe title="AloeVera Plant" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/2e6bdc74aa58489d81d807586b381ce3/embed"> </iframe> 
+                        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> </div>
+                    <h3>Aloe Vera</h3>
+                    <p>Aloe Vera: A succulent plant known for its healing properties.</p>
+                    <p>Botanical name : Aloe barbadensis miller</p>
+                    <p>Family:Asphodelaceae (Liliaceae) </p>
+                    <p>Benefits:Reducing dental plaque, accelerating wound healing, preventing wrinkles, and managing blood sugar.</p>
+                    <p>Known for its soothing properties.</p>
+                </div>
+
+                <div class="plant-item" data-name="Tulsi">
+                    <img src=<div class="sketchfab-embed-wrapper"> 
+                        <iframe title="Basil plant" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/114e3f6ae8c647c598c6630046c9b4a8/embed"> </iframe> 
+                        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> </div>
+                    <h3>Tulsi</h3>
+                    <p>Basil: Used in Ayurvedic medicine for its anti-inflammatory properties.</p>
+                    <p> Botanical name:Ocimum basilicum</p>
+                    <p>Family:	Lamiaceae</p>
+                    <p>Benefits:Basil helps in preventing cancer.</p>
+                    <p>         
+                        Basil helps in diabetes management. 
+                    </p>
+                    <p>Also known as Holy Basil, used in many traditional medicines.</p>
+                </div>
+
+                <div class="plant-item" data-name="Neem">
+                    <img src=<div class="sketchfab-embed-wrapper"> 
+                        <iframe title="Neem Leves" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b65a26212565461eba0a735960a2926c/embed"> </iframe> 
+                        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> </div>
+                    <h3>Neem</h3>
+                    <p>Neem: Used in Ayurvedic medicine for its anti-inflammatory properties.</p>
+                    <p> Botanical name:Azadirachta indica </p>
+                    <p>Family:	Mahogany</p>
+                    <p>Benefits:Neem boosts immunity, promotes skin health, and has anti-inflammatory and antibacterial properties</p>
+                    
+                    <p>Has antibacterial and antifungal properties.</p>
+                </div>
+
+                <div class="plant-item" data-name="Turmeric">
+                    <img src="div class="sketchfab-embed-wrapper> 
+                    <iframe title="Turmeric - Curcuma longa" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/05f6febc74134387901d7bb5aa8d2ffb/embed"> </iframe> 
+                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"></div>
+                        <h3>Turmeric</h3>
+                        <p>Turmeric: Known for its anti-inflammatory and antioxidant effects.</p>
+                    <p>Botanical name:Curcuma longa</p>
+                    <p>Family:Ginger family</p>
+                    <p>Benefits:Improves Digestion.
+                        Helps in Muscle Recovery.
+                    </p>
+                </div>
+                <!-- Add more plants here -->
+            </div>
+        </section>
+
+        <section id="resources" class="educational-resources section">
+            <h2 class="heading">Educational Resources</h2>
+            <p>Learn more about the benefits and uses of medicinal plants in traditional medicine systems.</p>
+        </section>
+
+        <section id="testimonials" class="testimonials section">
+            <h2 class="heading">What Our Visitors Say</h2>
+            <p>Discover the impact of our virtual herbal garden on visitors around the world.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="heading">Contact Us</h2>
+            <form>
+                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="email" class="form-control" placeholder="Your Email">
+                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                <button type="submit" class="cta">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+        </div>
+        <p>&copy; 2024 Virtual Herbal Garden. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Voice search function using the Web Speech API
+        function startVoiceSearch() {
+            if ('webkitSpeechRecognition' in window) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+
+                recognition.onresult = function (event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('search').value = transcript;
+                    filterPlants();
+                };
+
+                recognition.start();
+            } else {
+                alert('Voice recognition not supported on this browser. Please use Chrome.');
+            }
+        }
+
+        function filterPlants() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+            const plantItems = document.querySelectorAll('.plant-item');
+
+            plantItems.forEach(function (item) {
+                const plantName = item.getAttribute('data-name').toLowerCase();
+                if (plantName.includes(searchValue)) {
+                    item.style.display = 'inline-block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
