@@ -60,3 +60,44 @@ The platform currently includes the following plants:
 Users can search plants using voice commands via the **Web Speech API**.
 
 Example:
+
+The plant will automatically appear in the search results.
+
+---
+
+## 📂 Project Structure
+## 🎯 Future Improvements
+
+- Add more medicinal plants
+- Full **3D virtual garden walkthrough**
+- Plant disease detection using AI
+- Mobile application version
+- Multilingual support
+
+---
+
+## 🌍 Use Case
+
+This project can help:
+
+- Students learning about medicinal plants
+- AYUSH education platforms
+- Herbal medicine awareness
+- Virtual botanical gardens
+
+---
+
+## 👨‍💻 Author
+
+**Abhishek K J**
+
+AI Product Developer | Full Stack Developer
+
+Portfolio: *(Add your portfolio link)*  
+GitHub: *(Add GitHub profile link)*
+
+---
+
+## 📜 License
+
+This project is for **educational purposes**.
